@@ -168,11 +168,8 @@ def nextPage(url="", page="0", showSeasons='True'):
 ###################################################
 @plugin.route('/play/<url>')
 def play(url):
-    # magnet = getPlayableLink(url)
     settings.log(url)
-    magnet = url
     response = browser.get(url, stream=True)
-    printer(response.status_code)
     dirPath = xbmc.translatePath('special://temp')
     path = os.path.join(dirPath, '1.torrent')
     with open(path, 'wb') as handle:
@@ -192,9 +189,10 @@ def play(url):
     else:
         link = 'plugin://plugin.video.xbmctorrent/play/%s' % path
     # play media
-    settings.debug("PlayMedia(%s)" % link)
+    settings.debug("PlayMedia(%s)" % path)
+    xbmc.executebuiltin("PlayMedia(%s)" % path)
     xbmc.executebuiltin("PlayMedia(%s)" % link)
-
+    xbmc.executebuiltin('Dialog.Close(all, true)')
 
 @plugin.route('/help/')
 def help():
