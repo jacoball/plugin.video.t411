@@ -191,7 +191,6 @@ def play(url):
     # play media
     settings.debug("PlayMedia(%s)" % path)
     xbmc.executebuiltin("PlayMedia(%s)" % path)
-    xbmc.executebuiltin("PlayMedia(%s)" % link)
     xbmc.executebuiltin('Dialog.Close(all, true)')
 
 @plugin.route('/help/')
