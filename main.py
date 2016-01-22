@@ -283,6 +283,7 @@ def remove(key=""):
     if settings.dialog.yesno(settings.cleanName, plugin.get_string(32006) % key):
         storage.remove(key, safe=False)
         storage.save()
+        'XBMC.Container.Update(%s)' % plugin.url_for('/search/')
 
 
 @plugin.route('/modify/<key>')
@@ -294,6 +295,7 @@ def modify(key):
     storage.database[newKey] = (selection, storage.database[key][1])
     if newKey != key: storage.remove(key, safe=False)
     storage.save()
+    'XBMC.Container.Update(%s)' % plugin.url_for('/search/')
 
 
 # Create the storage from titles and urls
